@@ -1,0 +1,20 @@
+# Dockerfile עבור kafka_to_rds.py
+FROM python:3.9-slim
+
+# הגדר את ה-working directory בתוך ה-container
+WORKDIR /app
+
+# העתק את כל הקבצים בתיקיית ה-dags לתוך ה-container
+COPY . /app
+
+# התקן את כל התלויות שמוגדרות ב-requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# התקן תלויות נוספות עבור Airflow ו-Kafka
+RUN pip install apache-airflow==2.4.0 kafka-python
+
+# הגדר את הפורט שבו האפליקציה תרוץ (אם יש צורך)
+EXPOSE 8080
+
+# הגדר את הפקודה שתתבצע כשיתחיל ה-container
+CMD ["python", "data-pipelines/dags/kafka_to_rds.py"]
