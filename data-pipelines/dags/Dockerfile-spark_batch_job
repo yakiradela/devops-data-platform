@@ -1,9 +1,15 @@
 FROM python:3.9-slim
 
-RUN pip install --no-cache-dir -r requirements.txt .
+WORKDIR /data-pipelines/dags
+
+# העתקת קובץ requirements.txt לתוך המיכל
+COPY requirements.txt .
+
+# התקנת התלויות
+RUN pip install --no-cache-dir -r requirements.txt
 
 RUN pip install apache-airflow==2.4.0 kubernetes pyspark
 
 EXPOSE 8080
 
-CMD ["python", "data-pipelines/dags/spark_batch_job.py"]
+CMD ["python", "spark_batch_job.py"]
