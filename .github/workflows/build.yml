@@ -21,4 +21,4 @@ jobs:
         run: |
           docker build -f data-pipelines/dags/Dockerfile-kafka_to_rds -t devops-data-platform-kafka:v1.0.0 ./data-pipelines/dags
           docker build -f data-pipelines/dags/Dockerfile-rds_to_redshift -t devops-data-platform-rds:v1.0.0 ./data-pipleines/dags  
-          docker build -f data-pipelines/dags/Dockerfile-spark_batch_job devops-data-platform-spark:v1.0.0 ./data-pipelines/dags
+          docker build -f data-pipelines/dags/Dockerfile-spark_batch_job -t devops-data-platform-spark:v1.0.0 ./data-pipelines/dags
