@@ -1,16 +1,30 @@
 FROM python:3.9-slim
 
+# התקנת כלים נדרשים
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    python3-dev \
+    libssl-dev \
+    libffi-dev \
+    libcurl4-openssl-dev \
+    libxml2-dev \
+    libxslt1-dev
+
 # הגדרת ספריית עבודה
-WORKDIR /data-pipelines/dags
+WORKDIR /app
 
 # העתקת קובץ requirements.txt לתוך המיכל
 COPY requirements.txt .
 
-# התקנת התלויות
+# עדכון pip לפני התקנה
+RUN pip install --upgrade pip
+
+# התקנת התלויות מתוך requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # העתקת קוד האפליקציה לתוך המיכל
 COPY . .
 
-# פקודת ברירת מחדל להפעלת האפליקציה
+# פקודת ברירת מחדל להפעלת האפליקציה (תלוי באפליקציה שלך)
 CMD ["python", "kafka_to_rds.py"]
