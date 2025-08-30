@@ -19,6 +19,6 @@ jobs:
 
       - name: Build Docker Image 
         run: |
-          docker build -t devops-data-platform-kafka:v1.0.0 ./devops-data-platform/data-piplines/dags
-          docker build -t devops-data-platform-rds:v1.0.0 ./devops-data-platform/data-piplines/dags  
-          docker build -t devops-data-platform-spark:v1.0.0 ./devops-data-platform/data-piplines/dags
+          docker build -t devops-data-platform-kafka:v1.0.0 ./devops-data-platform/data-pipelines/dags
+          docker build -t devops-data-platform-rds:v1.0.0 ./devops-data-platform/data-pipleines/dags  
+          docker build -t devops-data-platform-spark:v1.0.0 ./devops-data-platform/data-pipelines/dags
