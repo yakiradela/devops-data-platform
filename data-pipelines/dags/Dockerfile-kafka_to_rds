@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 
 # הגדרת ספריית עבודה
-WORKDIR /app
+WORKDIR /data-pipelines/dags
 
 # העתקת קובץ requirements.txt לתוך המיכל
 COPY requirements.txt .
@@ -12,5 +12,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # העתקת קוד האפליקציה לתוך המיכל
 COPY . .
 
-# פקודת ברירת מחדל להפעלת האפליקציה (תלוי באפליקציה שלך)
+# פקודת ברירת מחדל להפעלת האפליקציה
 CMD ["python", "kafka_to_rds.py"]
