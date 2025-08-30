@@ -4,6 +4,6 @@ RUN pip install --no-cache-dir -r requirements.txt .
 
 RUN pip install apache-airflow==2.4.0 psycopg2 boto3
 
-EXPOSE 8080
+EXPOSE 8084
 
 CMD ["python", "data-pipelines/dags/rds_to_redshift.py"]
