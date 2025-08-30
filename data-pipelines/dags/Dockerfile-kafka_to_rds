@@ -1,9 +1,16 @@
-FROM python:3.9-slim  
+FROM python:3.9-slim
 
-RUN pip install --no-cache-dir -r requirements.txt .
+# הגדרת ספריית עבודה
+WORKDIR /app
 
-RUN pip install apache-airflow==2.4.0 kafka-python
+# העתקת קובץ requirements.txt לתוך המיכל
+COPY requirements.txt .
 
-EXPOSE 8080
+# התקנת התלויות
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "data-pipelines/dags/kafka_to_rds.py"]
+# העתקת קוד האפליקציה לתוך המיכל
+COPY . .
+
+# פקודת ברירת מחדל להפעלת האפליקציה (תלוי באפליקציה שלך)
+CMD ["python", "kafka_to_rds.py"]
